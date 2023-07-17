@@ -1,91 +1,19 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include "tPoint.hpp"
 
-
-#define width 1280
-#define height 720
-
-class tPoint
-{
-public:
-
-    tPoint(double x = rand()%width, double y = rand()%height) : x(x), y(y) 
-    {
-        point.setRadius(5);
-        point.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
-        point.setPosition(rand()%width, rand()%height);
-
-        dx = 0.05*((rand()%3) - 1);
-        dy = 0.05*((rand()%3) - 1);
-    }
-
-    double getX() const
-    {
-        return x;
-    }
-
-    void setX(double x)
-    {
-        this->x = x;
-    }
-
-    double getY() const
-    {
-        return y;
-    }
-
-    void setY(double y) 
-    {
-        this->y = y;
-    }
-
-    void move(double xx, double yy)
-    {
-        setX(x + xx);
-        setY(y + yy);
-        point.setPosition(this->x, this->y);
-    }
-
-    void move(double time)
-    {
-        setX(x + dx*time);
-        setY(y + dy*time);
-        point.setPosition(this->x, this->y);
-    }
-
-    void setPosition(double xx, double yy)
-    {
-        setX(xx);
-        setY(yy);
-        point.setPosition(this->x, this->y);
-    }
-
-    sf::CircleShape& getPoint()
-    {
-        return point;
-    }
-
-private:
-    double x;
-    double y;
-    double dx;
-    double dy;
-
-    sf::CircleShape point;
-};
 
 int main()
 {
     srand(time(NULL));
     tPoint points[100];
 
+    sf::Clock clock;
     sf::RenderWindow window(sf::VideoMode(width, height), "Test");
     window.setPosition(sf::Vector2i(100, 50));
+    window.setVerticalSyncEnabled(true);
 
-    sf::Clock clock;
-
-    
 
     while (window.isOpen())
     {
@@ -99,12 +27,37 @@ int main()
                 window.close();
         }
 
+        
+
+
         for (int i = 0; i < 100; i++)
         {
+            double x = points[i].getX();
+            double y = points[i].getY();
+
+            if (x <= 0) 
+            {
+                points[i].setDx(points[i].getDx() * -1);
+                points[i].setPosition(0, points[i].getY());
+            }
+            if (x >= width) 
+            {
+                points[i].setDx(points[i].getDx() * -1);
+                points[i].setPosition(width, points[i].getY());
+            }
+            if (y <= 0) 
+            {
+                points[i].setDy(points[i].getDy() * -1);
+                points[i].setPosition(points[i].getX(), 0);
+            }
+            if (y >= height) 
+            {
+                points[i].setDy(points[i].getDy() * -1);
+                points[i].setPosition(points[i].getX(), height);
+            }
+
             points[i].move(time);
         }
-
-
 
         window.clear();
         for (int i = 0; i < 100; i++)

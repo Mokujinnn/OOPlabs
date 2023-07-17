@@ -195,7 +195,7 @@ int* createArrayD(int **arr, int n)
 
 int main()
 {
-    int n = 4;
+    int n = 5;
     int **arr = createArray2d(n);
     printArray2d(arr, n);
 
