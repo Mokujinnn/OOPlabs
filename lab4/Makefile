@@ -1,12 +1,13 @@
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
-SRC = main.cpp tPoint.cpp
+LIBSMAC = -I /Users/movavi_school/Documents/Maxim_L/include -L /Users/movavi_school/Documents/Maxim_L/lib -lsfml-graphics -lsfml-window -lsfml-system -std=c++20 -Wl, -rpath ../../lib
+SRC = main.cpp figures.cpp
 OBJ = $(SRC:.cpp=.o)
 EXECUTABLE = app
 
 all: $(SRC) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJ)
-	clang++ $(LIBS) $(OBJ) -o (EXECUTABLE)
+	clang++ $(OBJ) -o $(EXECUTABLE) $(LIBSMAC)
 
 %.o: %.cpp
-	clang++ -c -Wall $< -o $@
+	clang++ -c -Wall $< -o $@ -I ../../include

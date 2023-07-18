@@ -14,7 +14,10 @@ private:
     double dy;
 
 public:
-    Shape(double x = rand()%width, double y = rand()%height);
+
+    Shape(double x, double y);
+
+    Shape();
 
     double getX() const;
 
@@ -24,11 +27,11 @@ public:
 
     void setY(double y);
 
-    void move(double x, double y);
+    //void move(double x, double y);
 
-    void move(double time);
+   // void move(double time);
 
-    void setPosition(double x, double y);
+    //void setPosition(double x, double y);
 
     double getDx();
 
@@ -38,4 +41,16 @@ public:
     
     void setDy(double dy);
 
-}
+};
+
+
+// class Point : public Shape
+// {
+// public:
+//     Point(double x, double y);
+
+//     Point();
+
+// private:
+//     sf::CircleShape point;
+// };
