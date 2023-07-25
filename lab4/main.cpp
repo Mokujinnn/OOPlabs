@@ -7,19 +7,19 @@ int main()
 {
     srand(time(NULL));
 
-    //sf::Clock clock;
+    sf::Clock clock;
 
-    sf::RenderWindow window(sf::VideoMode(width, height), "Test");
-    window.setPosition(sf::Vector2i(100, 50));
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Test");
+    window.setPosition(sf::Vector2i(300, 150));
     window.setVerticalSyncEnabled(true);
-    sf::CircleShape shape(100);
-    shape.setFillColor(sf::Color::Green);
+    
+    Circle circ(100);
+
 
     while (window.isOpen())
     {
-        //float time = clock.getElapsedTime().asMilliseconds();
-        //clock.restart();
-
+        float time = clock.getElapsedTime().asMilliseconds();
+        clock.restart();
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -27,8 +27,11 @@ int main()
                 window.close();
         }
 
+        circ.rotate(0.01);
+        circ.move(time* 0.05);
+
         window.clear();
-        window.draw(shape);
+        window.draw(circ.getPoint());
         window.display();
 
     }

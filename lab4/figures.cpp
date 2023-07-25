@@ -1,62 +1,215 @@
 #include "figures.hpp"
 
-Shape::Shape(double x, double y)
+
+///////////////
+//  class Shape 
+///////////////
+void Shape::createShape(sf::Vector2f moveDerection, sf::Color color, int width , int height)
 {
-   this->x = x;
-   this->y = y;
+    this->moveDerection = moveDerection;
+    this->color         = color;
+    this->windowHeight  = height;
+    this->windowWidth   = width;
 }
 
-Shape::Shape()
+Shape::Shape(int windowWidth, int windowHeight)
 {
-    this->x = rand()%width;
-    this->y = rand()%height;
+    createShape(sf::Vector2f(rand()%3 - 1, rand()%3 - 1), sf::Color::Green, windowWidth, windowHeight);
 }
 
-double Shape::getX() const
+Shape::Shape(sf::Vector2f moveDerection, sf::Color color, int width = 1280, int height = 720)
 {
-    return x;
+    createShape(moveDerection, color, windowWidth, windowHeight);
 }
 
-void Shape::setX(double x)
+sf::Vector2f  Shape::getMoveDerection() const
 {
-    this->x = x;
+    return this->moveDerection;
 }
 
-double Shape::getY() const
+int           Shape::getWindowHeight() const
 {
-    return y;
+    return this->windowHeight;
 }
 
-void Shape::setY(double y) 
+int           Shape::getWindowWidth() const
 {
-    this->y = y;
-
+    return this->windowWidth;
 }
 
-double Shape::getDx()
+void          Shape::setMoveDerection(sf::Vector2f  moveDerection)
 {
-    return this->dx;
+    this->moveDerection = moveDerection;
 }
 
-double Shape::getDy()
+sf::Color     Shape::getColor() const
 {
-    return this->dy;
+    return this->color;
 }
 
-void Shape::setDx(double dx)
+void          Shape::setColor(sf::Color color)
 {
-    this->dx = dx;
-}
-
-void Shape::setDy(double dy)
-{
-    this->dy = dy;
-
+    this->color = color;
 }
 
 
-// Point::Point(double x, double y) : Shape(x, y)
-// {
-//     point.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
-//     point.setPosition(this->x, this->y);
-// }
+//////////////
+// class Point
+//////////////
+
+Point::Point(sf::Vector2f position, sf::Vector2f moveDerection, sf::Color color, int width, int height, int radius) : Shape(moveDerection, color, width, height)
+{
+    this->radius = radius;
+    this->position = position;
+    point.setRadius(radius);
+    point.setOrigin(radius, radius);
+    point.setPosition(this->position);
+}
+
+Point::Point(int windowWidth, int windowHeight, int radius) : Shape(windowWidth, windowHeight)
+{
+    this->position = sf::Vector2f(rand()%1280, rand()%720);
+    this->radius = radius;
+    point.setRadius(radius);
+    point.setOrigin(radius, radius);
+    point.setPosition(this->position);
+}
+
+sf::Vector2f  Point::getPosition() const
+{
+    return this->position;
+}
+
+void          Point::setPosition(sf::Vector2f position)
+{
+    this->position = position;
+}
+
+void          Point::setPosition(float x, float y)
+{
+    this->position = sf::Vector2f(x, y);
+}
+
+void          Point::setPoint(sf::Vector2f pos)
+{
+    this->point.setPosition(pos);
+}
+
+void          Point::move(float speed)
+{
+    sf::Vector2f pos    = this->getPosition();
+    sf::Vector2f mvDer  = this->getMoveDerection();
+    float x             = pos.x;
+    float y             = pos.y;
+    float dx            = mvDer.x;
+    float dy            = mvDer.y;
+    sf::Vector2f newPos(x + dx * speed, y + dy * speed);
+
+    int width  = this->getWindowWidth();
+    int height = this->getWindowHeight();
+    
+    if (newPos.x > width || newPos.x < 0)
+    {
+        newPos = pos;
+        mvDer.x = mvDer.x * -1; 
+        this->setMoveDerection(mvDer);
+    }
+    else if (newPos.y > height || newPos.y < 0)
+    {
+        newPos = pos;
+        mvDer.y = mvDer.y * -1; 
+        this->setMoveDerection(mvDer);
+    }
+
+    this->setPosition(newPos);
+    this->setPoint(newPos);
+}
+
+sf::CircleShape Point::getPoint()
+{
+    return this->point;
+}
+
+
+////////////////
+//  class Circle
+////////////////
+
+
+Circle::Circle(sf::Vector2f position, sf::Vector2f moveDerection, sf::Color color, int width, int height, int radius) : Shape(moveDerection, color, width, height)
+{
+    this->radius = radius;
+    this->position = position;
+    point.setRadius(radius);
+    point.setOrigin(radius, radius);
+    point.setPosition(this->position);
+}
+
+Circle::Circle(int radius, int windowWidth, int windowHeight ) : Shape(windowWidth, windowHeight)
+{
+    this->radius = radius;
+    this->position = sf::Vector2f(this->radius+(rand()%(1280 - this->radius)), this->radius+(rand()%(720 - this->radius)));
+    point.setRadius(radius);
+    point.setOrigin(radius, radius);
+    point.setPosition(this->position);
+}
+
+sf::Vector2f  Circle::getPosition() const
+{
+    return this->position;
+}
+
+void          Circle::setPosition(sf::Vector2f position)
+{
+    this->position = position;
+}
+
+void          Circle::setPosition(float x, float y)
+{
+    this->position = sf::Vector2f(x, y);
+}
+
+void          Circle::setPoint(sf::Vector2f pos)
+{
+    this->point.setPosition(pos);
+}
+
+void          Circle::move(float speed)
+{
+    sf::Vector2f pos    = this->getPosition();
+    sf::Vector2f mvDer  = this->getMoveDerection();
+    float x             = pos.x;
+    float y             = pos.y;
+    float dx            = mvDer.x;
+    float dy            = mvDer.y;
+    sf::Vector2f newPos(x + dx * speed, y + dy * speed);
+
+    int width  = this->getWindowWidth();
+    int height = this->getWindowHeight();
+    
+    if (newPos.x > width - this->radius || newPos.x  < this->radius)
+    {
+        newPos = pos;
+        mvDer.x = mvDer.x * -1; 
+        this->setMoveDerection(mvDer);
+    }
+    else if (newPos.y > height - this->radius || newPos.y < this->radius)
+    {
+        newPos = pos;
+        mvDer.y = mvDer.y * -1; 
+        this->setMoveDerection(mvDer);
+    }
+
+    this->setPosition(newPos);
+    this->setPoint(newPos);
+}
+
+sf::CircleShape Circle::getPoint()
+{
+    return this->point;
+}
+
+void            Circle::rotate(float angle)
+{
+    this->point.rotate(angle);
+}
