@@ -13,7 +13,7 @@ int main()
     window.setPosition(sf::Vector2i(300, 150));
     window.setVerticalSyncEnabled(true);
     
-    Circle circ(100);
+    Rect rect;
 
 
     while (window.isOpen())
@@ -27,11 +27,11 @@ int main()
                 window.close();
         }
 
-        circ.rotate(0.01);
-        circ.move(time* 0.05);
+        rect.rotate(0.1);
+        rect.move(time* 0.25);
 
         window.clear();
-        window.draw(circ.getPoint());
+        rect.draw(window);
         window.display();
 
     }

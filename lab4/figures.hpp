@@ -59,6 +59,8 @@ public:
     sf::CircleShape  getPoint();
 
     void             setPoint(sf::Vector2f pos);
+
+    void             draw(sf::RenderWindow& window);
 };
 
 
@@ -71,9 +73,9 @@ private:
 
 public:
 
-    Circle(int radius = 100, int windowWidth = 1280, int windowHeight = 720 );
+    Circle(int radius = 100, int windowWidth = 1280, int windowHeight = 720);
 
-    Circle(sf::Vector2f position, sf::Vector2f moveDerection, sf::Color color, int width, int height, int radius = 5);
+    Circle(sf::Vector2f position, sf::Vector2f moveDerection, sf::Color color, int width, int height, int radius = 100);
 
     sf::Vector2f     getPosition() const;
 
@@ -88,4 +90,38 @@ public:
     void             setPoint(sf::Vector2f pos);
 
     void             rotate(float degre);
+
+    void             draw(sf::RenderWindow& window);
+
+};
+
+class Rect : public Shape
+{
+private:
+    sf::Vector2f       position;
+    sf::Vector2f       size;
+    sf::RectangleShape rect;
+    
+public:
+
+    Rect(sf::Vector2f size = sf::Vector2f(100, 100), int windowWidth = 1280, int windowHeight = 720);
+
+    Rect(sf::Vector2f position, sf::Vector2f size, sf::Vector2f moveDerection, sf::Color color, int width, int height);
+
+    sf::Vector2f       getPosition() const;
+  
+    void               setPosition(sf::Vector2f position);
+
+    void               setPosition(float x, float y);
+
+    void               setRect(sf::Vector2f pos);
+
+    sf::RectangleShape getRect();
+
+    void               move(float speed);
+
+    void               rotate(float degre);
+
+    void               draw(sf::RenderWindow& window);
+
 };
