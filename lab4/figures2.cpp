@@ -215,20 +215,28 @@ void Line::draw(sf::RenderWindow& window)
 
 void Line::rotate(float angle)
 {
-    float x1, y1, x2, y2;
+    float x1, y1, x2, y2, centerX, centerY;
     x1 = this->vertex[0].position.x;
     y1 = this->vertex[0].position.y;
     x2 = this->vertex[1].position.x;
     y2 = this->vertex[1].position.y;
+    centerX = (x1 + x2) / 2;
+    centerY = (y1 + y2) / 2;
 
-    x1 = x1 * cos(angle) + y1 * sin(angle);
-    y1 = y1 * cos(angle) - x1 * sin(angle);
+    x1 = x1 - centerX;
+    y1 = y1 - centerY;
+    x2 = x2 - centerX;
+    y2 = y2 - centerY;
+    
+    float x = x1 * cos(angle) + y1 * sin(angle);
+    float y = y1 * cos(angle) - x1 * sin(angle);
 
-    //x2 = x2 * cos(angle) - y2 * sin(angle);
-   // y2 = y2 * cos(angle) + x2 * sin(angle);
+    this->vertex[0].position.x = x + centerX;
+    this->vertex[0].position.y = y + centerY;
 
-    this->vertex[0].position.x = x1;
-    this->vertex[0].position.y = y1;
-    this->vertex[1].position.x = x2;
-    this->vertex[1].position.y = y2;
-}
+    x = x2 * cos(angle) + y2 * sin(angle);
+    y = y2 * cos(angle) - x2 * sin(angle);
+    
+    this->vertex[1].position.x = x + centerX;
+    this->vertex[1].position.y = y + centerY;
+}   
