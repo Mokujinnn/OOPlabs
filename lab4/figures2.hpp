@@ -4,16 +4,16 @@
 class Point
 {
 private:
-    sf::Vector2f position;
+    sf::Vector2f  position;
 
 public:
-    float getX() const;
-    void setX(float x);
-    float getY() const;
-    void setY(float y);
-    sf::Vector2f getPosition() const;
-    void setPosition(sf::Vector2f pos);
-    void setPosition(float x, float y);
+    float         getX() const;
+    void          setX(float x);
+    float         getY() const;
+    void          setY(float y);
+    sf::Vector2f  getPosition() const;
+    void          setPosition(sf::Vector2f pos);
+    void          setPosition(float x, float y);
 
 };
 
@@ -74,4 +74,25 @@ public:
     void             rotate(float degre);
     void             draw(sf::RenderWindow& window);
     void             move(float speed);
+};
+
+class Rectangle : public Shape
+{
+private:
+    Point              points[4];
+    sf::Vector2f       size;
+    sf::RectangleShape rectangle;
+    
+public:
+    Rectangle(sf::Vector2f size = sf::Vector2f(100, 100), int windowWidth = 1280, int windowHeight = 720);
+    Rectangle(sf::Vector2f position, sf::Vector2f size, sf::Vector2f moveDerection, sf::Color color, int width, int height);
+
+    sf::Vector2f       getPosition() const;
+    void               setPosition(sf::Vector2f position);
+    void               setPosition(float x, float y);
+    void               setRect(sf::Vector2f pos);
+    sf::RectangleShape getRect();
+    void               move(float speed);
+    void               rotate(float degre);
+    void               draw(sf::RenderWindow& window);
 };

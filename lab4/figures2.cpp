@@ -279,3 +279,88 @@ void Line::move(float speed)
         this->vertex[i].position.y = y + mvDer.y * speed;
     }
 }
+
+// class Rectangle
+//////////////////
+
+Rectangle::Rectangle(sf::Vector2f size, int windowWidth, int windowHeight) : Shape(windowWidth, windowHeight)
+{
+    this->size = size;
+    points[0].setPosition(sf::Vector2f(rand() % (int)(this->getWindowWidth() - this->size.x), (rand() % (int)(this->getWindowHeight() - this->size.y))));
+    points[1].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y));
+    points[2].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y + this->size.y));
+    points[3].setPosition(sf::Vector2f(this->points[0].getPosition().x, this->points[0].getPosition().y + this->size.y));
+
+    this->rectangle = sf::RectangleShape(sf::Vector2f(size));
+    this->rectangle.setFillColor(this->getColor());
+    this->rectangle.setPosition(this->points[0].getPosition());
+    this->rectangle.setOrigin(size.x/2, size.y/2);
+}
+
+sf::Vector2f Rectangle::getPosition() const
+{
+    return sf::Vector2f((points[0].getX() + points[2].getX()) / 2, points[0].getY() + points[2].getY() / 2);
+}
+
+void Rectangle::setPosition(sf::Vector2f position)
+{
+    this->rectangle.setPosition(position);
+    this->points[0].setPosition(position);
+    this->points[1].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y));
+    this->points[2].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y + this->size.y));
+    this->points[3].setPosition(sf::Vector2f(this->points[0].getPosition().x, this->points[0].getPosition().y + this->size.y));
+}
+
+void Rectangle::setPosition(float x, float y)
+{
+    sf::Vector2f tmp(x, y);
+    this->rectangle.setPosition(tmp);
+    this->points[0].setPosition(tmp);
+    this->points[1].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y));
+    this->points[2].setPosition(sf::Vector2f(this->points[0].getPosition().x + this->size.x, this->points[0].getPosition().y + this->size.y));
+    this->points[3].setPosition(sf::Vector2f(this->points[0].getPosition().x, this->points[0].getPosition().y + this->size.y));
+}
+
+void Rectangle::move(float speed)
+{
+    sf::Vector2f mvDer = this->getMoveDerection();
+    int width  = this->getWindowWidth();
+    int height = this->getWindowHeight();
+    for (int i = 0; i <= 3; i++)
+    {
+        float x = this->points[i].getX();
+        float y = this->points[i].getY();
+        bool flag = true;
+
+        sf::Vector2f newPos(x + mvDer.x * speed, y + mvDer.y * speed);
+        
+        if (newPos.x > width || newPos.x < 0)
+        {
+            mvDer.x = mvDer.x * -1; 
+            this->setMoveDerection(mvDer);
+            flag = false;
+        }
+        if (newPos.y > height || newPos.y < 0)
+        {
+            mvDer.y = mvDer.y * -1; 
+            this->setMoveDerection(mvDer);
+            flag = false;
+        }
+
+        if(!flag) return;
+    }
+
+    for (int i = 0; i <= 3; i++)
+    {
+        float x = this->points[i].getX();
+        float y = this->points[i].getY();
+
+        this->points[i].setX(x + mvDer.x * speed);
+        this->points[i].setY(y + mvDer.y * speed);
+    }
+}
+
+void Rectangle::draw(sf::RenderWindow& window)
+{
+    window.draw(this->rectangle);
+}

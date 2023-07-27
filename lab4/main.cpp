@@ -13,8 +13,7 @@ int main()
     window.setPosition(sf::Vector2i(300, 150));
     window.setVerticalSyncEnabled(true);
     
-    Line line(sf::Vector2f(600, 300), sf::Vector2f(400, 500));
-
+    Rectangle rect;
 
     while (window.isOpen())
     {
@@ -27,11 +26,10 @@ int main()
                 window.close();
         }
 
-        line.rotate(0.01);
-        line.move(time* 0.25);
+        rect.move(time*0.5);
 
         window.clear();
-        line.draw(window);
+        rect.draw(window);
         window.display();
 
     }

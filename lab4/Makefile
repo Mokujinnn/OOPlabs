@@ -1,4 +1,4 @@
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system -g
 LIBSMAC = -I /Users/movavi_school/Documents/Maxim_L/include -L /Users/movavi_school/Documents/Maxim_L/lib -lsfml-graphics -lsfml-window -lsfml-system -std=c++20 -Wl, -rpath ../../lib
 SRC = main.cpp figures2.cpp
 OBJ = $(SRC:.cpp=.o)
