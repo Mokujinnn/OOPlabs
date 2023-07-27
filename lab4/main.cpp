@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <ctime>
-#include "figures.hpp"
+#include "figures2.hpp"
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
     window.setPosition(sf::Vector2i(300, 150));
     window.setVerticalSyncEnabled(true);
     
-    Rect rect;
+    Line line(sf::Vector2f(600, 300), sf::Vector2f(400, 500));
 
 
     while (window.isOpen())
@@ -27,11 +27,11 @@ int main()
                 window.close();
         }
 
-        rect.rotate(0.1);
-        rect.move(time* 0.25);
+        line.rotate(0.01);
+        //circ.move(time* 0.25);
 
         window.clear();
-        rect.draw(window);
+        line.draw(window);
         window.display();
 
     }
