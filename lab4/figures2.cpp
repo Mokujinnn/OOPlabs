@@ -240,3 +240,42 @@ void Line::rotate(float angle)
     this->vertex[1].position.x = x + centerX;
     this->vertex[1].position.y = y + centerY;
 }   
+
+void Line::move(float speed)
+{
+    sf::Vector2f mvDer = this->getMoveDerection();
+    int width  = this->getWindowWidth();
+    int height = this->getWindowHeight();
+    for (int i = 0; i <= 1; i++)
+    {
+        float x = getVertex()[i].position.x;
+        float y = getVertex()[i].position.y;
+        bool flag = true;
+
+        sf::Vector2f newPos(x + mvDer.x * speed, y + mvDer.y * speed);
+        
+        if (newPos.x > width || newPos.x < 0)
+        {
+            mvDer.x = mvDer.x * -1; 
+            this->setMoveDerection(mvDer);
+            flag = false;
+        }
+        if (newPos.y > height || newPos.y < 0)
+        {
+            mvDer.y = mvDer.y * -1; 
+            this->setMoveDerection(mvDer);
+            flag = false;
+        }
+
+        if(!flag) return;
+    }
+
+    for (int i = 0; i <= 1; i++)
+    {
+        float x = getVertex()[i].position.x;
+        float y = getVertex()[i].position.y;
+
+        this->vertex[i].position.x = x + mvDer.x * speed;
+        this->vertex[i].position.y = y + mvDer.y * speed;
+    }
+}

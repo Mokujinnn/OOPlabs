@@ -7,20 +7,14 @@ private:
     sf::Vector2f position;
 
 public:
-
     float getX() const;
-
     void setX(float x);
-
     float getY() const;
-
     void setY(float y);
-
     sf::Vector2f getPosition() const;
-
     void setPosition(sf::Vector2f pos);
-
     void setPosition(float x, float y);
+
 };
 
 class Shape
@@ -33,23 +27,14 @@ private:
 
     void          createShape(sf::Vector2f moveDerection, sf::Color color, int width, int height);
 
-
 public:
-
     Shape(int windowWidth = 1280, int windowHeight = 720);
-
     Shape(sf::Vector2f moveDerection, sf::Color color, int width , int height);
-
     int           getWindowHeight() const;
-
     int           getWindowWidth() const;
-
     sf::Vector2f  getMoveDerection() const;
-
     void          setMoveDerection(sf::Vector2f  moveDerection);
-
     sf::Color     getColor() const;
-
     void          setColor(sf::Color color);
 
 };
@@ -62,29 +47,17 @@ private:
     int              radius;
 
 public:
-
     Circle(int radius = 100, int windowWidth = 1280, int windowHeight = 720);
-
     Circle(sf::Vector2f position, sf::Vector2f moveDerection, sf::Color color, int width, int height, int radius = 100);
-
     sf::Vector2f     getPosition() const;
-
     void             setPosition(sf::Vector2f position);
-
     void             setPosition(float x, float y);
-
     void             move(float speed);
-
     sf::CircleShape  getPoint();
-
     void             setPoint(sf::Vector2f pos);
-
     void             rotate(float degre);
-
     void             draw(sf::RenderWindow& window);
-
     void             setRadius(int r);
-
     int              getRadius() const;
 
 };
@@ -96,12 +69,9 @@ private:
 
 public:
     Line(sf::Vector2f p1, sf::Vector2f p2, int windowWidth = 1280, int windowHeight = 720);
-
-    void setVertex(sf::VertexArray vertex);
-
+    void             setVertex(sf::VertexArray vertex);
     sf::VertexArray  getVertex() const;
-
     void             rotate(float degre);
-
     void             draw(sf::RenderWindow& window);
+    void             move(float speed);
 };

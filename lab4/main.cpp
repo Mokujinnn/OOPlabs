@@ -28,7 +28,7 @@ int main()
         }
 
         line.rotate(0.01);
-        //circ.move(time* 0.25);
+        line.move(time* 0.25);
 
         window.clear();
         line.draw(window);
