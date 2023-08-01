@@ -7,7 +7,10 @@ EXECUTABLE = app
 all: $(SRC) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJ)
-	clang++ $(OBJ) -o $(EXECUTABLE) $(LIBSMAC)
+	clang++ $(OBJ) -o $(EXECUTABLE) $(LIBSMAC) -g
 
 %.o: %.cpp
 	clang++ -c -Wall $< -o $@ -I ../../include
+
+clean:
+	rm $(EXECUTABLE) $(OBJ)

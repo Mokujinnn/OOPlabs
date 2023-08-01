@@ -26,12 +26,14 @@ int main()
                 window.close();
         }
 
-        rect.move(time*0.5);
+        rect.move(time*0.2);
+        rect.rotate(0.2);
+
+        //std::cout << rect.getPosition().x << ' ' << rect.getPosition().y << '\n';
 
         window.clear();
         rect.draw(window);
         window.display();
-
     }
 
     return 0;

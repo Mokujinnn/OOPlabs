@@ -1,5 +1,6 @@
 #include "figures2.hpp"
 #include <cmath>
+#include <iostream>
 
 // class Point
 
@@ -334,13 +335,13 @@ void Rectangle::move(float speed)
 
         sf::Vector2f newPos(x + mvDer.x * speed, y + mvDer.y * speed);
         
-        if (newPos.x > width || newPos.x < 0)
+        if (newPos.x > width + this->size.x/2 || newPos.x < this->size.x/2)
         {
             mvDer.x = mvDer.x * -1; 
             this->setMoveDerection(mvDer);
             flag = false;
         }
-        if (newPos.y > height || newPos.y < 0)
+        if (newPos.y > height + this->size.y/2 || newPos.y < this->size.y/2)
         {
             mvDer.y = mvDer.y * -1; 
             this->setMoveDerection(mvDer);
@@ -358,9 +359,58 @@ void Rectangle::move(float speed)
         this->points[i].setX(x + mvDer.x * speed);
         this->points[i].setY(y + mvDer.y * speed);
     }
+
+
+    this->rectangle.move(mvDer.x * speed, mvDer.y * speed);
 }
 
 void Rectangle::draw(sf::RenderWindow& window)
 {
     window.draw(this->rectangle);
+}
+
+void Rectangle::rotate(float angle)
+{
+    float centerX, centerY;
+
+    centerX = (this->points[0].getPosition().x + this->points[3].getPosition().x) / 2;
+    centerY = (this->points[0].getPosition().y + this->points[3].getPosition().y) / 2;
+    bool flag = true;
+
+    for (int i = 0; i <= 3; i++)
+    {
+        float x1 = this->points[i].getPosition().x - centerX;
+        float y1 = this->points[i].getPosition().y - centerY;
+    
+        float x = x1 * cos(angle) + y1 * sin(angle);
+        float y = y1 * cos(angle) - x1 * sin(angle);
+
+        if (x + centerX < this->size.x/2 || x + centerX > this->getWindowWidth() + this->size.x/2)
+        {
+            flag = false;
+            break;
+        }
+        if (y + centerY < this->size.y/2 || y + centerY > this->getWindowHeight() + this->size.y/2)
+        {
+            flag = false;
+            break;
+        }
+    }
+
+    if(flag)
+    {
+        for (int i = 0; i <= 3; i++)
+        {
+        float x1 = this->points[i].getPosition().x - centerX;
+        float y1 = this->points[i].getPosition().y - centerY;
+    
+        float x = x1 * cos(angle) + y1 * sin(angle);
+        float y = y1 * cos(angle) - x1 * sin(angle);
+
+        this->points[i].setPosition(x + centerX, y + centerY);
+
+        }
+        this->rectangle.rotate(angle);
+    }
+
 }
