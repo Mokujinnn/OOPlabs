@@ -128,8 +128,8 @@ int* createArrayC(int **arr, int n)
     if (n % 2 == 0)
     {
         shift = n/2 - 1;
-        i = n/2;
-        j = n/2;
+        i = n/2 - 1;
+        j = n/2 - 1;
     }
     else
     {
@@ -141,14 +141,14 @@ int* createArrayC(int **arr, int n)
     while (k < n * n)
     {
         d[k] = arr[i][j];
-        if (i == n - shift - 1 && j > shift)
-            j--;
-        else if (j == shift && i > shift)
-            i--;
-        else if (i == shift && j < n - shift - 1)
+        if (i == shift && j < n - shift)
             j++;
-        else
+        else if (j == n - shift && i < n - shift)
             i++;
+        else if (i == n - shift && j > shift)
+            j--;
+        else
+            i--;
 
         if ((i == shift + 1) && (j == shift) && (shift != 0))
         {
@@ -195,12 +195,12 @@ int* createArrayD(int **arr, int n)
 
 int main()
 {
-    int n = 5;
+    int n = 4;
     int **arr = createArray2d(n);
     printArray2d(arr, n);
 
     std::cout << '\n';
-    int *d = createArrayD(arr, n);
+    int *d = createArrayC(arr, n);
     printArray(d, n*n);
 
     deleteArray2d(arr, n);
