@@ -121,38 +121,27 @@ int *createArrayB(int **arr, int n)
 int* createArrayC(int **arr, int n)
 {
     int *d = new int[n*n];
+    int shift = 0;
+    
     int k = 0;
-    int shift;
-    int i;
-    int j;
-    if (n % 2 == 0)
-    {
-        shift = n/2 - 1;
-        i = n/2 - 1;
-        j = n/2 - 1;
-    }
-    else
-    {
-        shift = n/2;
-        i = n/2;
-        j = n/2;
-    }
+    int i = 0;
+    int j = 0;
 
     while (k < n * n)
     {
-        d[k] = arr[i][j];
-        if (i == shift && j < n - shift)
+        d[n*n - k - 1] = arr[i][j];
+        if (i == shift && j < n - shift - 1)
             j++;
-        else if (j == n - shift && i < n - shift)
+        else if (j == n - shift - 1 && i < n - shift - 1)
             i++;
-        else if (i == n - shift && j > shift)
+        else if (i == n - shift - 1 && j > shift)
             j--;
         else
             i--;
 
-        if ((i == shift + 1) && (j == shift) && (shift != 0))
+        if ((i == shift + 1) && (j == shift) && (shift != n - shift - 1))
         {
-            shift--;
+            shift++;
         }
 
         k++;
@@ -195,13 +184,30 @@ int* createArrayD(int **arr, int n)
 
 int main()
 {
-    int n = 4;
+    int n = 5;
     int **arr = createArray2d(n);
     printArray2d(arr, n);
 
     std::cout << '\n';
-    int *d = createArrayC(arr, n);
+    int *d = createArrayA(arr, n);
+    std::cout << "a) ";
     printArray(d, n*n);
+    deleteArray(d);
+
+    d = createArrayB(arr, n);
+    std::cout << "b) ";
+    printArray(d, n*n);
+    deleteArray(d);
+
+    d = createArrayC(arr, n);
+    std::cout << "c) ";
+    printArray(d, n*n);
+    deleteArray(d);
+
+    d = createArrayD(arr, n);
+    std::cout << "d) ";
+    printArray(d, n*n);
+    deleteArray(d);
 
     deleteArray2d(arr, n);
     return 0;
