@@ -59,7 +59,7 @@ int *createArrayA(int **arr, int n)
     int *d = new int[n * n];
     int count = 0;
 
-    for (int k = 0; k < n * n - 1; k++)
+    for (int k = 0; k < 2 * n - 1; k++)
     {
         int i, j;
         if(k < n)
@@ -91,7 +91,7 @@ int *createArrayB(int **arr, int n)
     int *d = new int[n * n];
     int count = 0;
 
-    for (int k = 0; k < n * n - 1; k++)
+    for (int k = 0; k < 2 * n - 1; k++)
     {
         int i, j;
         if(k < n)
@@ -184,7 +184,7 @@ int* createArrayD(int **arr, int n)
 
 int main()
 {
-    int n = 5;
+    int n = 4;
     int **arr = createArray2d(n);
     printArray2d(arr, n);
 

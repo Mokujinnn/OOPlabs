@@ -1,9 +1,9 @@
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+LIBS = -L"../SFML-2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 SRC = main.cpp tPoint.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(OBJ)
-	clang++ $(OBJ) -o app $(LIBS)
+	g++ $(OBJ) -o app $(LIBS)
 
 %.o: %.cpp
-	clang++ -c -Wall $< -o $@
+	g++ -c -Wall $< -o $@ -I../SFML-2.6.0/include
