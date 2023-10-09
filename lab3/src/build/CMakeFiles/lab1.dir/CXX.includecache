@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/d/Files/prog/OOPlabs/lab3/src/main.cpp
+iostream
+-
+SFML/Graphics.hpp
+-
+ctime
+-
+tPoint.hpp
+/mnt/d/Files/prog/OOPlabs/lab3/src/tPoint.hpp
+
+/mnt/d/Files/prog/OOPlabs/lab3/src/tPoint.cpp
+tPoint.hpp
+/mnt/d/Files/prog/OOPlabs/lab3/src/tPoint.hpp
+
+/mnt/d/Files/prog/OOPlabs/lab3/src/tPoint.hpp
+SFML/Graphics.hpp
+-
+
