@@ -1,3 +1,4 @@
-/mnt/d/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/rebuild_cache.dir
-/mnt/d/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/edit_cache.dir
-/mnt/d/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/lab1.dir
+D:/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/lab3-1.dir
+D:/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/lab3-2.dir
+D:/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/edit_cache.dir
+D:/Files/prog/OOPlabs/lab3/src/build/CMakeFiles/rebuild_cache.dir

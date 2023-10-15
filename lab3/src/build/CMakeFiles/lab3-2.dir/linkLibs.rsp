@@ -1,0 +1,1 @@
+ "D:/Files/prog/OOPlabs/SFMLbuild/lib/libsfml-graphics.a" "D:/Files/prog/OOPlabs/SFMLbuild/lib/libsfml-main.a" "D:/Files/prog/OOPlabs/SFMLbuild/lib/libsfml-window.a" "D:/Files/prog/OOPlabs/SFMLbuild/lib/libsfml-system.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

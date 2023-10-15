@@ -13,12 +13,13 @@ int main()
     window.setPosition(sf::Vector2i(300, 150));
     window.setVerticalSyncEnabled(true);
     
-    Rectangle rect;
+    Line line(sf::Vector2f(100,100), sf::Vector2f(200, 200));
 
     while (window.isOpen())
     {
         float time = clock.getElapsedTime().asMilliseconds();
         clock.restart();
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -26,13 +27,12 @@ int main()
                 window.close();
         }
 
-        rect.move(time*0.2);
-        rect.rotate(0.2);
+        line.move(time*0.2);
+        line.rotate(0.02);
 
-        //std::cout << rect.getPosition().x << ' ' << rect.getPosition().y << '\n';
 
         window.clear();
-        rect.draw(window);
+        line.draw(window);
         window.display();
     }
 

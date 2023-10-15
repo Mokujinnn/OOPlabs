@@ -22,7 +22,7 @@ int main()
     for(int i = 0; i < n; i++)
     {
         points[i].setPosition(sf::Vector2f(rand()%windowWidth, rand()%windowHeight));
-        points[i].setVelocity(sf::Vector2f((rand()%200 - n) * 0.01, (rand()%200 - n) * 0.01));
+        points[i].setVelocity(sf::Vector2f((rand()%200 - 100) * 0.01, (rand()%200 - 100) * 0.01));
     }
 
     while (window.isOpen())
