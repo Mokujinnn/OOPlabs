@@ -91,4 +91,9 @@ void Shape::move(float speed, unsigned width, unsigned height)
             points[i].position = p[i];
         }
     }
+
+    // if (this->points.getVertexCount() >= 5)
+    // {
+    //     this->points[this->num - 1].position = this->points[1].position
+    // }
 }

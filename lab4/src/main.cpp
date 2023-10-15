@@ -31,7 +31,7 @@ int main()
     Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
     Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
     Rhomb rh(sf::Vector2f(300, 300), 100, 50);
-    Ellipse el(100, sf::Vector2f(400, 400), 130, 70);
+    Ellipse el(100, sf::Vector2f(400, 400), 130, 80);
 
     while (window.isOpen())
     {

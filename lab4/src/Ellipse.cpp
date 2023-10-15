@@ -28,4 +28,5 @@ Ellipse::Ellipse(unsigned countOfPoints, const sf::Vector2f &center, float a, fl
         this->points[i].position = sf::Vector2f(center.x + x, center.y - y);
         i++;
     }
+    this->points[this->num - 1].position = this->points[1].position;
 }
