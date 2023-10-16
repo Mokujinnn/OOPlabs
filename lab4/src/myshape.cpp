@@ -1,4 +1,5 @@
 #include <vector>
+#include <cmath>
 
 #include "myshape.hpp"
 
@@ -91,9 +92,38 @@ void Shape::move(float speed, unsigned width, unsigned height)
             points[i].position = p[i];
         }
     }
+}
 
-    // if (this->points.getVertexCount() >= 5)
-    // {
-    //     this->points[this->num - 1].position = this->points[1].position
-    // }
+void Shape::rotate(float angle, unsigned width, unsigned height)
+{
+    sf::Vector2f center(0, 0);
+
+    if (this->num > 4)
+    {
+        for (int i = 1; i < this->num - 1; i++)
+        {
+            center += this->points[i].position;   
+        }
+        center = sf::Vector2f(center.x / (this->num - 2), center.y / (this->num - 2));
+    }
+    else
+    {
+        for (int i = 0; i < this->num; i++)
+        {
+            center += this->points[i].position;   
+        }
+        center = sf::Vector2f(center.x / (this->num), center.y / (this->num));
+    }
+
+    for (int i = 0; i < this->num; i++)
+    {
+        float x1 = this->points[i].position.x - center.x;
+        float y1 = this->points[i].position.y - center.y;
+
+        float x = x1 * cos(angle) - y1 * sin(angle);
+        float y = y1 * cos(angle) + x1 * sin(angle);
+
+        this->points[i].position = sf::Vector2f(x + center.x, y + center.y);
+    }
+    
 }

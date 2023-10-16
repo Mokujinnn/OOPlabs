@@ -20,4 +20,6 @@ public:
     void draw(sf::RenderWindow &window) const;
 
     void move(float speed, unsigned width, unsigned height);
+
+    void rotate(float angle, unsigned width, unsigned height);
 };

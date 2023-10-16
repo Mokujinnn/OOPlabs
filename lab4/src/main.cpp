@@ -30,7 +30,7 @@ int main()
     Circle circ(100, 80, sf::Vector2f(200, 200));
     Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
     Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
-    Rhomb rh(sf::Vector2f(300, 300), 100, 50);
+    Rhomb rh(sf::Vector2f(300, 300), 150, 70);
     Ellipse el(100, sf::Vector2f(400, 400), 130, 80);
 
     while (window.isOpen())
@@ -50,12 +50,23 @@ int main()
         }
 
         p.move(speed, windowWidth, windowHeight);
+
         line.move(speed, windowWidth, windowHeight);
+        line.rotate(speed, windowWidth, windowHeight);
+
         circ.move(speed, windowWidth, windowHeight);
+
         tr.move(speed, windowWidth, windowHeight);
+        tr.rotate(speed, windowWidth, windowHeight);
+
         rect.move(speed, windowWidth, windowHeight);
+        rect.rotate(speed, windowWidth, windowHeight);
+
         rh.move(speed, windowWidth, windowHeight);
+        rh.rotate(speed, windowWidth, windowHeight);
+
         el.move(speed, windowWidth, windowHeight);
+        el.rotate(speed, windowWidth, windowHeight);
 
         window.clear();
 
