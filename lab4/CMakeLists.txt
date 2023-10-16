@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(lab1)
+project(lab4)
 
 # устанавливаем путь до корневого каталога SFML
 set(SFML_ROOT_DIR "../SFMLbuild")
