@@ -102,7 +102,7 @@ void Shape::rotate(float angle, unsigned width, unsigned height)
     {
         for (int i = 1; i < this->num - 1; i++)
         {
-            center += this->points[i].position;   
+            center += this->points[i].position;
         }
         center = sf::Vector2f(center.x / (this->num - 2), center.y / (this->num - 2));
     }
@@ -110,7 +110,7 @@ void Shape::rotate(float angle, unsigned width, unsigned height)
     {
         for (int i = 0; i < this->num; i++)
         {
-            center += this->points[i].position;   
+            center += this->points[i].position;
         }
         center = sf::Vector2f(center.x / (this->num), center.y / (this->num));
     }
@@ -125,5 +125,4 @@ void Shape::rotate(float angle, unsigned width, unsigned height)
 
         this->points[i].position = sf::Vector2f(x + center.x, y + center.y);
     }
-    
 }

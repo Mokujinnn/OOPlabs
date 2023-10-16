@@ -13,6 +13,8 @@ public:
     Ellipse(unsigned countOfPoints, const sf::Vector2f &center, float a, float b);
 
     ~Ellipse() {}
+
+    virtual void rotate(float angle, unsigned width, unsigned height);
 };
 
 

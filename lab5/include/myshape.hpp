@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 
 #include "SFML/Graphics.hpp"
 
@@ -15,11 +16,11 @@ public:
 
     Shape(unsigned num);
 
-    ~Shape() {}
+    virtual ~Shape() {}
 
     void draw(sf::RenderWindow &window) const;
 
-    void move(float speed, unsigned width, unsigned height);
+    virtual void move(float speed, unsigned width, unsigned height);
 
-    void rotate(float angle, unsigned width, unsigned height);
+    virtual void rotate(float angle, unsigned width, unsigned height);
 };

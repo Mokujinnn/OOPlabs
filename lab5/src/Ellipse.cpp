@@ -30,3 +30,21 @@ Ellipse::Ellipse(unsigned countOfPoints, const sf::Vector2f &center, float a, fl
     }
     this->points[this->num - 1].position = this->points[1].position;
 }
+
+void Ellipse::rotate(float angle, unsigned width, unsigned height)
+{
+
+    sf::Vector2f center = sf::Vector2f(this->points[0].position);
+
+    for (int i = 0; i < this->num; i++)
+    {
+        float x1 = this->points[i].position.x - center.x;
+        float y1 = this->points[i].position.y - center.y;
+
+        float x = x1 * cos(angle) - y1 * sin(angle);
+        float y = y1 * cos(angle) + x1 * sin(angle);
+
+        this->points[i].position = sf::Vector2f(x + center.x, y + center.y);
+    }
+    
+}

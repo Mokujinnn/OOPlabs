@@ -10,4 +10,6 @@ public:
     Rhomb(const sf::Vector2f& center, float d1, float d2);
 
     ~Rhomb() {}
+
+    virtual void rotate(float angle, unsigned width, unsigned height);
 };

@@ -27,7 +27,7 @@ int main()
 
     Point p(windowWidth, windowHeight);
     Line line(sf::Vector2f(100, 100), sf::Vector2f(200, 300));
-    Circle circ(100, 80, sf::Vector2f(200, 200));
+    Circle circ(50, 80, sf::Vector2f(200, 200));
     Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
     Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
     Rhomb rh(sf::Vector2f(300, 300), 150, 70);

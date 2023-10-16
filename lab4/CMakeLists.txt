@@ -9,7 +9,7 @@ set(SFML_ROOT_DIR "../SFMLbuild")
 set(SFML_DIR "${SFML_ROOT_DIR}")
 
 # set(SFML_STATIC_LIBRARIES TRUE)
-find_package(SFML 2.6.0 REQUIRED COMPONENTS system window graphics)
+find_package(SFML 2.6.0 REQUIRED COMPONENTS system window graphics main)
 # set(BUILD_SHARED_LIBS OFF)
 
 set(SFML_LIBRARIES 
@@ -21,6 +21,6 @@ message(STATUS "SFML libraries: ${SFML_LIBRARIES}")
 file(GLOB CPPS "src/*.cpp")
 
 add_executable(${PROJECT_NAME} ${CPPS})
-target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics)
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-main)
 target_include_directories(${PROJECT_NAME} PUBLIC "include")
 set(SFML_STATIC_LIBRARIES TRUE)
