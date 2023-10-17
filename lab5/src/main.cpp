@@ -26,8 +26,13 @@ int main()
     float speedFactor = 2;
 
     Point p(windowWidth, windowHeight);
-    Line line(sf::Vector2f(100, 100), sf::Vector2f(200, 300));
-    Circle circ(50, 80, sf::Vector2f(200, 200));
+    Line lines[] = {Line(sf::Vector2f(100, 100), sf::Vector2f(200, 300)),
+                    Line(sf::Vector2f(500, 450), sf::Vector2f(500, 500)),
+                    Line(sf::Vector2f(333, 333), sf::Vector2f(222, 222))};
+
+    Circle circls[] = {Circle(50, 80, sf::Vector2f(200, 200)),
+                       Circle(50, 30, sf::Vector2f(200, 200))};
+
     Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
     Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
     Rhomb rh(sf::Vector2f(300, 300), 150, 70);
@@ -51,10 +56,16 @@ int main()
 
         p.move(speed, windowWidth, windowHeight);
 
-        line.move(speed, windowWidth, windowHeight);
-        line.rotate(speed, windowWidth, windowHeight);
+        for (int i = 0; i < sizeof(lines) / sizeof(lines[0]); i++)
+        {
+            lines[i].move(speed, windowWidth, windowHeight);
+            lines[i].rotate(speed, windowWidth, windowHeight);
+        }
 
-        circ.move(speed, windowWidth, windowHeight);
+        for (int i = 0; i < sizeof(circls) / sizeof(circls[0]); i++)
+        {
+            circls[i].move(speed, windowWidth, windowHeight);
+        }
 
         tr.move(speed, windowWidth, windowHeight);
         tr.rotate(speed, windowWidth, windowHeight);
@@ -71,11 +82,23 @@ int main()
         window.clear();
 
         p.draw(window);
-        line.draw(window);
-        circ.draw(window);
+
+        for (int i = 0; i < sizeof(lines) / sizeof(lines[0]); i++)
+        {
+            lines[i].draw(window);
+        }
+
+        for (int i = 0; i < sizeof(circls) / sizeof(circls[0]); i++)
+        {
+            circls[i].draw(window);
+        }
+
         tr.draw(window);
+
         rect.draw(window);
+
         rh.draw(window);
+
         el.draw(window);
 
         window.display();
