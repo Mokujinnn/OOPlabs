@@ -1,5 +1,12 @@
 #include "Line.hpp"
 
+Line::Line() : Shape(2)
+{
+    this->points.setPrimitiveType(sf::Lines);
+    this->points[0].position = sf::Vector2f(100, 100);
+    this->points[1].position = sf::Vector2f(200, 200);
+}
+
 Line::Line(const sf::Vector2f &p1, const sf::Vector2f &p2) : Shape(2)
 {
     this->points.setPrimitiveType(sf::Lines);
@@ -7,7 +14,7 @@ Line::Line(const sf::Vector2f &p1, const sf::Vector2f &p2) : Shape(2)
     this->points[1].position = p2;
 }
 
-void Line::rotate(float angle, unsigned width, unsigned height)
+void Line::rotate(float angle)
 {
     sf::Vector2f center = this->points[0].position + this->points[1].position;
     center = sf::Vector2f(center.x / 2, center.y / 2);

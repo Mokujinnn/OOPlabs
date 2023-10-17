@@ -9,6 +9,8 @@ private:
     unsigned radius;
 
 public:
+    Circle();
+
     Circle(unsigned countOfPoints, unsigned radius, const sf::Vector2f &center);
 
     ~Circle() {};

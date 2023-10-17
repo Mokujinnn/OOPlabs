@@ -31,7 +31,7 @@ Ellipse::Ellipse(unsigned countOfPoints, const sf::Vector2f &center, float a, fl
     this->points[this->num - 1].position = this->points[1].position;
 }
 
-void Ellipse::rotate(float angle, unsigned width, unsigned height)
+void Ellipse::rotate(float angle)
 {
 
     sf::Vector2f center = sf::Vector2f(this->points[0].position);

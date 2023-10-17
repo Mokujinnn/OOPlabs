@@ -14,7 +14,7 @@ public:
 
     ~Ellipse() {}
 
-    virtual void rotate(float angle, unsigned width, unsigned height);
+    virtual void rotate(float angle = acos(-1) / 2);
 };
 
 

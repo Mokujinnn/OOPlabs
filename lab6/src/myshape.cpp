@@ -1,4 +1,5 @@
 #include <vector>
+
 #include <cmath>
 
 #include "myshape.hpp"
@@ -102,7 +103,7 @@ void Shape::move(float speed, unsigned width, unsigned height)
     }
 }
 
-void Shape::rotate(float angle, unsigned width, unsigned height)
+void Shape::rotate(float angle)
 {
     sf::Vector2f center(0, 0);
 

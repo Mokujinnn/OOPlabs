@@ -10,7 +10,7 @@ Rhomb::Rhomb(const sf::Vector2f &center, float d1, float d2) : Shape(4)
     this->points[3].position = sf::Vector2f(center.x - d2 / 2, center.y);
 }
 
-void Rhomb::rotate(float angle, unsigned width, unsigned height)
+void Rhomb::rotate(float angle)
 {
     sf::Vector2f center = this->points[0].position + this->points[2].position;
     center = sf::Vector2f(center.x / 2, center.y / 2);

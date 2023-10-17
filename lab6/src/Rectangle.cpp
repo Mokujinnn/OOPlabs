@@ -10,7 +10,7 @@ Rectangle::Rectangle(const sf::Vector2f &p1, const sf::Vector2f &p2) : Shape(4)
     this->points[3].position = sf::Vector2f(p1.x, p2.y);
 }
 
-void Rectangle::rotate(float angle, unsigned width, unsigned height)
+void Rectangle::rotate(float angle)
 {
     sf::Vector2f center = this->points[0].position + this->points[2].position;
     center = sf::Vector2f(center.x / 2, center.y / 2);
