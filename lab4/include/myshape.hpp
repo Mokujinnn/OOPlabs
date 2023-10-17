@@ -17,6 +17,8 @@ public:
 
     ~Shape() {}
 
+    void setColor(const sf::Color &clr);
+
     void draw(sf::RenderWindow &window) const;
 
     void move(float speed, unsigned width, unsigned height);

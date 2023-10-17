@@ -14,6 +14,14 @@ Shape::Shape(unsigned num) : moveDerection(sf::Vector2f(rand() % 200 - 100, rand
     this->points.resize(num);
 }
 
+void Shape::setColor(const sf::Color &clr)
+{
+    for (int i = 0; i < this->num; i++)
+    {
+        this->points[i].color = clr;
+    }
+}
+
 void Shape::draw(sf::RenderWindow &window) const
 {
     window.draw(points);
