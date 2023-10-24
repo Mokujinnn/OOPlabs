@@ -1,11 +1,13 @@
 #include "LinkedList.hpp"
 
-LinkedList::LinkedList() : first(nullptr), count(0)
+LinkedList::count = 0;
+
+LinkedList::LinkedList() : first(nullptr)
 {
     this->count++;
 }
 
-LinkedList::LinkedList(int data) : first(new Node),  count(0)
+LinkedList::LinkedList(int data) : first(new Node)
 {
     this->first->data = data;
     this->count++;
