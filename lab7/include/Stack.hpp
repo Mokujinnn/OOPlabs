@@ -9,12 +9,7 @@ private:
 public:
     Stack() : LinkedList() {}
 
-    Stack(T data) : LinkedList(data) {}
+    Stack(int data) : LinkedList(data) {}
 
     ~Stack();
 };
-
-Stack::~Stack()
-{
-
-}
