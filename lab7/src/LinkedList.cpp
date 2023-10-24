@@ -1,8 +1,14 @@
 #include "LinkedList.hpp"
 
-LinkedList::LinkedList(int data) : first(new Node)
+LinkedList::LinkedList() : first(nullptr), count(0)
+{
+    this->count++;
+}
+
+LinkedList::LinkedList(int data) : first(new Node),  count(0)
 {
     this->first->data = data;
+    this->count++;
 }
 
 LinkedList::~LinkedList()
@@ -11,6 +17,7 @@ LinkedList::~LinkedList()
     {
         delete node;
     }
+    this->count--;
 }
 
 void LinkedList::print()

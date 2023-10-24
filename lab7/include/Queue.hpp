@@ -1,18 +1,15 @@
 #pragma once
 
-class Queue
+#include "LinkedList.hpp"
+
+class Queue : public LinkedList
 {
 private:
     
 public:
-    Queue(/* args */);
+    Queue() : LinkedList() {}
+
+    Queue(int data) : LinkedList(data) {}
+
     ~Queue();
 };
-
-Queue::Queue(/* args */)
-{
-}
-
-Queue::~Queue()
-{
-}

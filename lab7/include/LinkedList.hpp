@@ -8,9 +8,10 @@ class LinkedList
 {
 private:
     Node * first;
+    static int count;
     
 public:
-    LinkedList() : first(nullptr) {}
+    LinkedList();
 
     LinkedList(int data);
 
