@@ -1,20 +1,20 @@
 #include <iostream>
 
 #include "LinkedList.hpp"
+// #include "Stack.hpp"
 
 int main()
 {
-
-    LinkedList<int> list;
+    LinkedList list;
 
     for (int i = 0; i < 10; i++)
     {
-        list.pushBack(i);
+        list.push(i);
     }
 
 
     list.print();
 
-    list.popFront();
+    list.pop();
     list.print();
 }
