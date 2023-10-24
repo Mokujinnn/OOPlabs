@@ -1,6 +1,6 @@
 #include "LinkedList.hpp"
 
-LinkedList::count = 0;
+int LinkedList::count = 0;
 
 LinkedList::LinkedList() : first(nullptr)
 {
