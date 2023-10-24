@@ -5,11 +5,12 @@
 class Queue : public LinkedList
 {
 private:
+    static int countqueue
     
 public:
-    Queue() : LinkedList() {}
+    Queue() : LinkedList() {this->countqueue++;}
 
-    Queue(int data) : LinkedList(data) {}
+    Queue(int data) : LinkedList(data) {this->countqueue++;}
 
     ~Queue();
 };

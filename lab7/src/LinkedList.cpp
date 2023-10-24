@@ -22,6 +22,11 @@ LinkedList::~LinkedList()
     this->count--;
 }
 
+int LinkedList::cnt()
+{
+    return LinkedList::count;
+}
+
 void LinkedList::print()
 {
     for (Node* node = this->first; node != nullptr; node = node->next)

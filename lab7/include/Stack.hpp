@@ -5,11 +5,12 @@
 class Stack : public LinkedList
 {
 private:
+    static int countstack;
 
 public:
-    Stack() : LinkedList() {}
+    Stack() : LinkedList() { this->countstack++; }
 
-    Stack(int data) : LinkedList(data) {}
+    Stack(int data) : LinkedList(data) {this->countstack++;}
 
     ~Stack();
 };

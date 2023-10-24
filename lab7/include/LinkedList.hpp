@@ -6,7 +6,7 @@
 
 class LinkedList
 {
-private:
+protected:
     Node * first;
     static int count;
     
@@ -16,6 +16,8 @@ public:
     LinkedList(int data);
 
     virtual ~LinkedList();
+
+    virtual int cnt();
 
     void print();
 
