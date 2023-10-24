@@ -13,6 +13,7 @@ int main()
         list.push(i);
     }
 
+    std::cout << LinkedList::count << '\n';
 
     list.print();
 
