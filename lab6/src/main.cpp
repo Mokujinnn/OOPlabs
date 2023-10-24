@@ -24,33 +24,37 @@ int main()
     window.setPosition(sf::Vector2i(300, 150));
 
     float speedFactor = 2;
+    float t = 0;
 
-    Point p(windowWidth, windowHeight);
-    Line lines[3];
+    // Point p(windowWidth, windowHeight);
+    // Line lines[3];
 
-    Circle circls[2];
+    // Circle circls[2];
 
-    Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
-    Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
-    Rhomb rh(sf::Vector2f(300, 300), 150, 70);
-    Ellipse el(100, sf::Vector2f(400, 400), 130, 80);
+    // Triangle tr(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
+    // Rectangle rect(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
+    // Rhomb rh(sf::Vector2f(300, 300), 150, 70);
+    // Ellipse el(100, sf::Vector2f(400, 400), 130, 80);
 
-    Shape *sh = new Shape[9];
+    Shape **shapes = new Shape *[10];
 
-    sh = {&lines[0],
-          &lines[1],
-          &lines[2],
-          &circls[0],
-          &circls[1],
-          &tr,
-          &rect,
-          &rh,
-          &el};
+    shapes[0] = new Point(windowWidth, windowHeight);
+    shapes[1] = new Line;
+    shapes[2] = new Line;
+    shapes[3] = new Line;
+    shapes[4] = new Circle;
+    shapes[5] = new Circle(50, 100, sf::Vector2f(300, 300));
+    shapes[6] = new Triangle(sf::Vector2f(300, 300), sf::Vector2f(200, 67), sf::Vector2f(350, 222));
+    shapes[7] = new Rectangle(sf::Vector2f(600, 600), sf::Vector2f(750, 700));
+    shapes[8] = new Rhomb(sf::Vector2f(300, 300), 150, 70);
+    shapes[9] = new Ellipse(100, sf::Vector2f(400, 400), 130, 80);
 
     while (window.isOpen())
     {
         float time = clock.getElapsedTime().asSeconds();
         clock.restart();
+
+        t += time;
 
         float speed = time * speedFactor;
 
@@ -60,55 +64,40 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    delete shapes[i];
+                }
+                delete[] shapes;
+
                 window.close();
+            }
         }
 
-        p.move(speed, windowWidth, windowHeight);
-
-        for (int i = 0; i < sizeof(lines) / sizeof(lines[0]); i++)
+        bool flag = true;
+        for (int i = 0; i < 10; i++)
         {
-            lines[i].move(speed, windowWidth, windowHeight);
-            lines[i].rotate(speed);
+            shapes[i]->move(speed, windowWidth, windowHeight);
+
+            if (t >= 2)
+            {
+                shapes[i]->rotate();
+                flag = false;
+            }
         }
 
-        for (int i = 0; i < sizeof(circls) / sizeof(circls[0]); i++)
+        if (!flag)
         {
-            circls[i].move(speed, windowWidth, windowHeight);
+            t -= 2;
         }
-
-        tr.move(speed, windowWidth, windowHeight);
-        tr.rotate(speed);
-
-        rect.move(speed, windowWidth, windowHeight);
-        rect.rotate(speed);
-
-        rh.move(speed, windowWidth, windowHeight);
-        rh.rotate(speed);
-
-        el.move(speed, windowWidth, windowHeight);
-        el.rotate();
 
         window.clear();
 
-        p.draw(window);
-
-        for (int i = 0; i < sizeof(lines) / sizeof(lines[0]); i++)
+        for (int i = 0; i < 10; i++)
         {
-            lines[i].draw(window);
+            shapes[i]->draw(window);
         }
-
-        for (int i = 0; i < sizeof(circls) / sizeof(circls[0]); i++)
-        {
-            circls[i].draw(window);
-        }
-
-        tr.draw(window);
-
-        rect.draw(window);
-
-        rh.draw(window);
-
-        el.draw(window);
 
         window.display();
     }
