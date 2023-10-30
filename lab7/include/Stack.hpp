@@ -8,9 +8,13 @@ private:
     static int countstack;
 
 public:
-    Stack() : LinkedList() { this->countstack++; }
+    Stack();
 
-    Stack(int data) : LinkedList(data) {this->countstack++;}
+    Stack(int data);
 
     ~Stack();
+
+    void pop();
+
+    static void cnt();
 };

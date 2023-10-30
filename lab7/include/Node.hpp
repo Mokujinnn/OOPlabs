@@ -1,11 +1,10 @@
 #pragma once
 
-
 struct Node
 {
-    int data;
     Node * next;
     Node * prev;
+    int data;
 
     Node() : data(0), next(nullptr), prev(nullptr) {}
 

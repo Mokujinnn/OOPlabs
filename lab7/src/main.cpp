@@ -6,17 +6,22 @@
 
 int main()
 {
+    LinkedList::cnt();
+    Stack stack;
+
+    Stack::cnt();
+
+    LinkedList::cnt();
+
     LinkedList list;
 
-    for (int i = 0; i < 10; i++)
-    {
-        list.push(i);
-    }
+    Queue q;
 
-    std::cout << LinkedList::count << '\n';
-
-    list.print();
-
+    q.pop();
     list.pop();
+    stack.pop();
+    LinkedList::cnt();
+    Queue::cnt();
+
     list.print();
 }

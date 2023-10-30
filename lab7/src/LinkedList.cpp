@@ -1,16 +1,17 @@
+#include <exception>
 #include "LinkedList.hpp"
 
 int LinkedList::count = 0;
 
-LinkedList::LinkedList() : first(nullptr)
+LinkedList::LinkedList() : first(nullptr), last(nullptr), size(0)
 {
-    this->count++;
+    LinkedList::count++;
 }
 
-LinkedList::LinkedList(int data) : first(new Node)
+LinkedList::LinkedList(int data) : first(new Node), last(first), size(1)
 {
     this->first->data = data;
-    this->count++;
+    LinkedList::count++;
 }
 
 LinkedList::~LinkedList()
@@ -19,12 +20,13 @@ LinkedList::~LinkedList()
     {
         delete node;
     }
-    this->count--;
+    LinkedList::count--;
 }
 
-int LinkedList::cnt()
+
+void LinkedList::cnt()
 {
-    return LinkedList::count;
+    std::cout << "Count of instances LinkedList: " << LinkedList::count << '\n';
 }
 
 void LinkedList::print()
@@ -42,32 +44,46 @@ void LinkedList::push(int data)
 
     if (this->first == nullptr)
     {
-        node = new Node;
-        node->data = data;
+        node = new Node(data, nullptr, nullptr);
         this->first = node;
+        this->last = node;
     }
     else
     {
         node = new Node(data, this->first, nullptr);
         this->first->prev = node;
         this->first = node;
+        if (this->size == 1)
+            this->last->prev = node;
     }
+    this->size++;
 }
 
 void LinkedList::pop()
 {
-    if (this->first == nullptr)
+    try
     {
-        return;
+        if (this->first == nullptr)
+        {
+            throw std::string("List is empty");
+        }
+        
+        Node * next = this->first->next;
+
+        delete this->first;
+
+        if (next != nullptr)
+            next->prev = nullptr;
+        else
+            this->last = next;
+        if(this->size == 2)
+            this->last = next;
+
+        this->first = next;
+        this->size--;
     }
-    
-    Node * next = this->first->next;
-
-    delete this->first;
-
-    if (next != nullptr)
-        next->prev = nullptr;
-
-    this->first = next;
-
+    catch(const std::string& s)
+    {
+        std::cout << s << '\n';
+    }
 }

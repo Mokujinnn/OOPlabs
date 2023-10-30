@@ -2,21 +2,53 @@
 
 int Queue::countqueue = 0;
 
+Queue::Queue()
+{
+    LinkedList::count--;
+    Queue::countqueue++;
+}
+
+Queue::Queue(int data) : LinkedList(data)
+{
+    LinkedList::count--;
+    Queue::countqueue++;
+}
+
 Queue::~Queue()
 {
     this->countqueue--;
 }
 
-Queue::cnt()
+void Queue::cnt()
 {
-    return Queue::countstack;
+    std::cout << "Count of instances Queue: " << Queue::countqueue << '\n';
 }
 
-Queue::pop()
+void Queue::pop()
 {
-    Node* node = nullptr;
+    try
+    {
+        if (this->first == nullptr)
+        {
+            throw std::string("Queue is empty");
+        }
+        
+        Node * next = this->last->prev;
 
-    for(; node->next != nullptr; node = node->next){};
+        delete this->last;
 
-    
+        if (next != nullptr)
+            next->next = nullptr;
+        else
+            this->last = next;
+        if(this->size == 2)
+            this->last = next;
+
+        this->first = next;
+        this->size--;
+    }
+    catch(const std::string& s)
+    {
+        std::cout << s << '\n';
+    }
 }

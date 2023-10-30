@@ -1,15 +1,18 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 #include "Node.hpp"
 
 class LinkedList
 {
 protected:
-    Node * first;
     static int count;
-    
+    Node *first;
+    Node *last;
+    size_t size;
+
 public:
     LinkedList();
 
@@ -17,11 +20,13 @@ public:
 
     virtual ~LinkedList();
 
-    virtual int cnt();
+    static void cnt();
 
     void print();
 
     virtual void push(int data);
 
     virtual void pop();
+
+    inline size_t length() { return this->size; }
 };
