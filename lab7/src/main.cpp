@@ -4,24 +4,60 @@
 #include "Stack.hpp"
 #include "Queue.hpp"
 
-int main()
+void cnt()
 {
     LinkedList::cnt();
-    Stack stack;
-
     Stack::cnt();
-
-    LinkedList::cnt();
-
-    LinkedList list;
-
-    Queue q;
-
-    q.pop();
-    list.pop();
-    stack.pop();
-    LinkedList::cnt();
     Queue::cnt();
+}
 
-    list.print();
+int main()
+{
+    cnt();
+
+    Queue *q = new Queue;
+
+    for (int i = 0; i < 3; i++)
+    {
+        q->push(i);
+    }
+    q->print();
+    for (int i = 0; i < 4; i++)
+    {
+        q->pop();
+    }
+    q->print();
+    cnt();
+
+    Stack *s = new Stack;
+    for (int i = 0; i < 3; i++)
+    {
+        s->push(i);
+    }
+    s->print();
+    for (int i = 0; i < 4; i++)
+    {
+        s->pop();
+    }
+    s->print();
+    cnt();
+
+    LinkedList *l = new LinkedList;
+    for (int i = 0; i < 3; i++)
+    {
+        l->push(i);
+    }
+    l->print();
+    for (int i = 0; i < 4; i++)
+    {
+        l->pop();
+    }
+    l->print();
+    cnt();
+
+    delete q;
+    delete s;
+    delete l;
+
+    cnt();
 }

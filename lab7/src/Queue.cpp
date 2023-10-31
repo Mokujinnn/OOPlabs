@@ -16,7 +16,8 @@ Queue::Queue(int data) : LinkedList(data)
 
 Queue::~Queue()
 {
-    this->countqueue--;
+    LinkedList::count++;
+     Queue::countqueue--;
 }
 
 void Queue::cnt()
@@ -40,11 +41,11 @@ void Queue::pop()
         if (next != nullptr)
             next->next = nullptr;
         else
-            this->last = next;
+            this->first = next;
         if(this->size == 2)
-            this->last = next;
+            this->first = next;
 
-        this->first = next;
+        this->last = next;
         this->size--;
     }
     catch(const std::string& s)
